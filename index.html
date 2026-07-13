@@ -3,32 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Zaher Portfolio</title>
+<title>Mohamed Zaher</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-margin:0;
 font-family:Arial;
 background:#0d0d0d;
-color:white;
+color:#fff;
 text-align:center;
-scroll-behavior:smooth;
-cursor:none;
+overflow-x:hidden;
 }
 
-/* LOADING */
+/* LOADER */
 #loader{
 position:fixed;
 width:100%;
 height:100%;
-background:black;
+background:#000;
 display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-font-size:30px;
+font-size:28px;
 color:#C9A86A;
+letter-spacing:2px;
 }
 
 /* NAV */
@@ -36,17 +36,21 @@ color:#C9A86A;
 display:flex;
 justify-content:space-between;
 padding:20px;
-background:black;
-position:sticky;
+background:rgba(0,0,0,0.8);
+position:fixed;
+width:100%;
 top:0;
-z-index:999;
+z-index:1000;
+backdrop-filter:blur(10px);
 }
 
 .nav a{
+color:#fff;
 margin:10px;
-color:white;
 text-decoration:none;
+transition:0.3s;
 }
+.nav a:hover{color:#C9A86A;}
 
 /* HERO */
 .hero{
@@ -55,6 +59,12 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+animation:fadeIn 1.5s ease;
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:15px;
 }
 
 .gold{color:#C9A86A;}
@@ -64,63 +74,57 @@ background:#C9A86A;
 border:none;
 padding:12px 25px;
 cursor:pointer;
-margin-top:20px;
-font-weight:bold;
+transition:0.3s;
+}
+.btn:hover{background:#fff;color:#000;}
+
+/* SECTIONS */
+.section{padding:80px 20px;}
+
+img{
+max-width:100%;
+display:block;
 }
 
 /* ABOUT */
-.section{padding:80px 20px;}
-
 .about{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:40px;
 align-items:center;
+gap:30px;
 }
-
 .about img{
 width:220px;
 border-radius:15px;
-box-shadow:0 0 25px #C9A86A55;
+box-shadow:0 0 20px #C9A86A55;
 }
 
-/* GRID */
+/* GRID WORK */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:20px;
+padding:20px;
 }
 
 .project{
-position:relative;
 overflow:hidden;
-opacity:0;
-transform:translateY(40px);
-transition:0.6s;
+border-radius:12px;
+position:relative;
 }
 
 .project img{
 width:100%;
+height:250px;
+object-fit:cover;
+transition:0.4s;
 }
 
 .project:hover img{
 transform:scale(1.1);
-transition:0.5s;
+filter:brightness(0.7);
 }
-
-.project::after{
-content:"عرض";
-position:absolute;
-bottom:0;
-width:100%;
-background:rgba(0,0,0,0.7);
-color:#C9A86A;
-padding:8px;
-opacity:0;
-}
-
-.project:hover::after{opacity:1;}
 
 /* PRICING */
 .pricing{
@@ -131,48 +135,36 @@ gap:20px;
 }
 
 .card{
-background:#1a1a1a;
-padding:20px;
+background:#111;
+padding:25px;
+border-radius:15px;
 width:250px;
-border-radius:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 20px #C9A86A44;
 }
 
 .premium{
-border:2px solid #C9A86A;
-transform:scale(1.05);
-}
-
-/* CURSOR */
-.cursor{
-width:20px;
-height:20px;
-border:2px solid #C9A86A;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-transform:translate(-50%,-50%);
-}
-
-/* WHATSAPP */
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:15px;
-border-radius:50%;
-font-size:20px;
+border:1px solid #C9A86A;
 }
 
 /* ANIMATION */
 .fade{
 opacity:0;
-transform:translateY(30px);
-animation:fade 1.5s forwards;
+transform:translateY(40px);
+transition:1s;
+}
+.show{
+opacity:1;
+transform:translateY(0);
 }
 
-@keyframes fade{
-to{opacity:1;transform:translateY(0);}
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 </style>
@@ -180,130 +172,124 @@ to{opacity:1;transform:translateY(0);}
 
 <body>
 
-<div id="loader">Loading...</div>
-<div class="cursor" id="cursor"></div>
+<div id="loader">Mohamed Zaher</div>
 
-<header class="nav">
-<h2 class="gold">Mohamed Zaher</h2>
+<!-- NAV -->
+<div class="nav">
+<h3 class="gold">Zaher</h3>
 <div>
 <a href="#about">من أنا</a>
-<a href="#logos">لوجو</a>
-<a href="#social">سوشيال</a>
-<a href="#brand">براند</a>
+<a href="#work">أعمالي</a>
 <a href="#pricing">الباقات</a>
 </div>
-</header>
+</div>
 
+<!-- HERO -->
 <section class="hero">
-<h1 class="fade">هخلي مشروعك Brand يبيع 🔥</h1>
-<p class="fade">تصميمات احترافية = عملاء أكتر</p>
-<a href="#pricing"><button class="btn fade">ابدأ الآن</button></a>
+<h1>مصمم يساعدك تكبر مشروعك 🚀</h1>
+<p class="gold">Logo | Social | Branding</p>
+<br>
+<a href="https://wa.me/201093524689"><button class="btn">تواصل الآن</button></a>
 </section>
 
-<section id="about" class="section">
+<!-- ABOUT -->
+<section id="about" class="section fade">
 <h2 class="gold">من أنا</h2>
 <div class="about">
 <img src="me.jpg">
-<div style="max-width:500px;text-align:right;">
+<div>
 <h3>محمد زاهر</h3>
-<p>مصمم جرافيك متخصص في بناء البراندات.</p>
-<p class="gold">12 Logo | 13 Social | 4 Brand</p>
+<p>مصمم جرافيك متخصص في بناء براندات قوية تساعدك تكسب عملاء أكتر.</p>
+<p class="gold">+12 Logo | +13 Social | +4 Branding</p>
 </div>
 </div>
 </section>
 
-<!-- LOGOS -->
-<section id="logos" class="section">
-<h2 class="gold">تصميمات اللوجو</h2>
+<!-- WORK -->
+<section id="work" class="section fade">
+<h2 class="gold">أعمالي</h2>
+
+<h3>Logo</h3>
 <div class="grid">
-
-<img src="logo1.jpg"><img src="logo2.jpg"><img src="logo3.jpg"><img src="logo4.jpg">
-<img src="logo5.jpg"><img src="logo6.jpg"><img src="logo7.jpg"><img src="logo8.jpg">
-<img src="logo9.jpg"><img src="logo10.jpg"><img src="logo11.jpg"><img src="logo12.jpg">
-
+<script>
+for(let i=1;i<=12;i++){
+document.write(`<div class="project"><img src="logo${i}.jpg"></div>`);
+}
+</script>
 </div>
-</section>
 
-<!-- SOCIAL -->
-<section id="social" class="section">
-<h2 class="gold">سوشيال ميديا</h2>
+<h3>Social Media</h3>
 <div class="grid">
-
-<img src="social1.jpg"><img src="social2.jpg"><img src="social3.jpg"><img src="social4.jpg">
-<img src="social5.jpg"><img src="social6.jpg"><img src="social7.jpg"><img src="social8.jpg">
-<img src="social9.jpg"><img src="social10.jpg"><img src="social11.jpg"><img src="social12.jpg">
-<img src="social13.jpg">
-
+<script>
+for(let i=1;i<=13;i++){
+document.write(`<div class="project"><img src="social${i}.jpg"></div>`);
+}
+</script>
 </div>
-</section>
 
-<!-- BRAND -->
-<section id="brand" class="section">
-<h2 class="gold">هوية بصرية</h2>
+<h3>Branding</h3>
 <div class="grid">
-
-<img src="brand1.jpg"><img src="brand2.jpg"><img src="brand3.jpg"><img src="brand4.jpg">
-
+<script>
+for(let i=1;i<=4;i++){
+document.write(`<div class="project"><img src="brand${i}.jpg"></div>`);
+}
+</script>
 </div>
+
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="section">
+<section id="pricing" class="section fade">
 <h2 class="gold">الباقات</h2>
 
 <div class="pricing">
 
 <div class="card">
 <h3>Starter</h3>
-<h2>$50</h2>
-<p>لوجو احترافي</p>
+<h2>500 جنيه</h2>
+<p>✔ لوجو واحد</p>
+<p>✔ تعديلين</p>
+<p>✔ تسليم سريع</p>
+<button class="btn">ابدأ الآن</button>
 </div>
 
 <div class="card premium">
-<h3>Pro 🔥</h3>
-<h2>$120</h2>
-<p>لوجو + سوشيال</p>
+<h3>Pro</h3>
+<h2>900 جنيه</h2>
+<p>✔ لوجو احترافي</p>
+<p>✔ 3 تصاميم سوشيال</p>
+<p>✔ تحسين الهوية</p>
+<button class="btn">الأكثر طلباً</button>
 </div>
 
 <div class="card">
-<h3>Branding</h3>
-<h2>$250</h2>
-<p>هوية كاملة</p>
+<h3>Business</h3>
+<h2>1400 جنيه</h2>
+<p>✔ لوجو + سوشيال</p>
+<p>✔ هوية بصرية بسيطة</p>
+<p>✔ دعم كامل</p>
+<button class="btn">احجز الآن</button>
 </div>
 
 </div>
 </section>
 
-<footer>
-<p>📞 01093524689</p>
-</footer>
-
-<a href="https://wa.me/201093524689" class="whatsapp">💬</a>
-
+<!-- JS -->
 <script>
 
-/* LOADER */
-window.onload = () => {
-document.getElementById("loader").style.display="none";
-};
+// LOADER
+window.onload=()=>{document.getElementById("loader").style.display="none";}
 
-/* SCROLL ANIMATION */
-window.addEventListener("scroll", () => {
-document.querySelectorAll(".project,img").forEach(el => {
-let top = el.getBoundingClientRect().top;
-if(top < window.innerHeight - 50){
-el.style.opacity=1;
-el.style.transform="translateY(0)";
+// SCROLL ANIMATION
+let elements=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
+elements.forEach(el=>{
+let top=el.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+el.classList.add("show");
 }
-});
-});
-
-/* CURSOR */
-const cursor = document.getElementById("cursor");
-document.addEventListener("mousemove", e=>{
-cursor.style.top = e.clientY+"px";
-cursor.style.left = e.clientX+"px";
-});
+})
+})
 
 </script>
 
