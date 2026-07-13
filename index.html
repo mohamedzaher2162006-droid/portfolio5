@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
+
+<!-- SEO -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Zaher</title>
+<meta name="description" content="مصمم جرافيك محترف - تصميم لوجو - سوشيال ميديا - هوية بصرية">
+<meta name="keywords" content="تصميم لوجو, مصمم جرافيك, سوشيال ميديا, هوية بصرية">
+<meta name="author" content="Mohamed Zaher">
+
+<title>Mohamed Zaher | Graphic Designer</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,6 +20,7 @@ background:#0d0d0d;
 color:#fff;
 text-align:center;
 overflow-x:hidden;
+cursor:none;
 }
 
 /* LOADER */
@@ -28,7 +35,17 @@ align-items:center;
 z-index:9999;
 font-size:28px;
 color:#C9A86A;
-letter-spacing:2px;
+}
+
+/* CURSOR */
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #C9A86A;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
 }
 
 /* NAV */
@@ -41,16 +58,7 @@ position:fixed;
 width:100%;
 top:0;
 z-index:1000;
-backdrop-filter:blur(10px);
 }
-
-.nav a{
-color:#fff;
-margin:10px;
-text-decoration:none;
-transition:0.3s;
-}
-.nav a:hover{color:#C9A86A;}
 
 /* HERO */
 .hero{
@@ -59,12 +67,6 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-animation:fadeIn 1.5s ease;
-}
-
-.hero h1{
-font-size:40px;
-margin-bottom:15px;
 }
 
 .gold{color:#C9A86A;}
@@ -74,56 +76,51 @@ background:#C9A86A;
 border:none;
 padding:12px 25px;
 cursor:pointer;
-transition:0.3s;
 }
-.btn:hover{background:#fff;color:#000;}
 
-/* SECTIONS */
+/* SECTION */
 .section{padding:80px 20px;}
 
-img{
-max-width:100%;
-display:block;
-}
+img{max-width:100%;border-radius:10px;}
 
-/* ABOUT */
-.about{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-align-items:center;
-gap:30px;
-}
-.about img{
-width:220px;
-border-radius:15px;
-box-shadow:0 0 20px #C9A86A55;
-}
-
-/* GRID WORK */
+/* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 padding:20px;
 }
 
 .project{
-overflow:hidden;
-border-radius:12px;
 position:relative;
+overflow:hidden;
+cursor:pointer;
 }
 
 .project img{
 width:100%;
 height:250px;
 object-fit:cover;
-transition:0.4s;
+transition:0.5s;
 }
 
-.project:hover img{
-transform:scale(1.1);
-filter:brightness(0.7);
+.project:hover img{transform:scale(1.1);}
+
+/* FULL SCREEN */
+#viewer{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+#viewer img{
+max-width:90%;
+max-height:90%;
 }
 
 /* PRICING */
@@ -136,35 +133,28 @@ gap:20px;
 
 .card{
 background:#111;
-padding:25px;
-border-radius:15px;
+padding:20px;
 width:250px;
+border-radius:10px;
+border:1px solid #222;
 transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 20px #C9A86A44;
-}
+.card:hover{transform:translateY(-10px);}
 
-.premium{
-border:1px solid #C9A86A;
-}
+.card h2{color:#C9A86A;}
 
-/* ANIMATION */
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-}
-.show{
-opacity:1;
-transform:translateY(0);
-}
-
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px;
+border-radius:50%;
+font-size:20px;
+color:white;
+text-decoration:none;
 }
 
 </style>
@@ -172,41 +162,33 @@ to{opacity:1;}
 
 <body>
 
+<!-- LOADER -->
 <div id="loader">Mohamed Zaher</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
 
 <!-- NAV -->
 <div class="nav">
-<h3 class="gold">Zaher</h3>
-<div>
-<a href="#about">من أنا</a>
-<a href="#work">أعمالي</a>
-<a href="#pricing">الباقات</a>
-</div>
+<h2 class="gold">Zaher</h2>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-<h1>مصمم يساعدك تكبر مشروعك 🚀</h1>
-<p class="gold">Logo | Social | Branding</p>
-<br>
-<a href="https://wa.me/201093524689"><button class="btn">تواصل الآن</button></a>
+<h1>مصمم جرافيك يساعدك تكبر مشروعك 🚀</h1>
+<p>تصميم لوجو - سوشيال ميديا - هوية بصرية</p>
+<button class="btn" onclick="scrollToWork()">شوف أعمالي</button>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="section fade">
-<h2 class="gold">من أنا</h2>
-<div class="about">
-<img src="me.jpg">
-<div>
-<h3>محمد زاهر</h3>
-<p>مصمم جرافيك متخصص في بناء براندات قوية تساعدك تكسب عملاء أكتر.</p>
-<p class="gold">+12 Logo | +13 Social | +4 Branding</p>
-</div>
-</div>
+<section class="section">
+<img src="me.jpg" width="200">
+<h2>محمد زاهر</h2>
+<p class="gold">12 Logo | 13 Social | 4 Brand</p>
 </section>
 
 <!-- WORK -->
-<section id="work" class="section fade">
+<section class="section" id="work">
 <h2 class="gold">أعمالي</h2>
 
 <h3>Logo</h3>
@@ -239,7 +221,7 @@ document.write(`<div class="project"><img src="brand${i}.jpg"></div>`);
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="section fade">
+<section class="section">
 <h2 class="gold">الباقات</h2>
 
 <div class="pricing">
@@ -247,49 +229,61 @@ document.write(`<div class="project"><img src="brand${i}.jpg"></div>`);
 <div class="card">
 <h3>Starter</h3>
 <h2>500 جنيه</h2>
-<p>✔ لوجو واحد</p>
-<p>✔ تعديلين</p>
-<p>✔ تسليم سريع</p>
-<button class="btn">ابدأ الآن</button>
-</div>
-
-<div class="card premium">
-<h3>Pro</h3>
-<h2>900 جنيه</h2>
-<p>✔ لوجو احترافي</p>
-<p>✔ 3 تصاميم سوشيال</p>
-<p>✔ تحسين الهوية</p>
-<button class="btn">الأكثر طلباً</button>
+<p>لوجو واحد</p>
+<p>تعديلين</p>
 </div>
 
 <div class="card">
-<h3>Business</h3>
-<h2>1400 جنيه</h2>
-<p>✔ لوجو + سوشيال</p>
-<p>✔ هوية بصرية بسيطة</p>
-<p>✔ دعم كامل</p>
-<button class="btn">احجز الآن</button>
+<h3>Pro</h3>
+<h2>900 جنيه</h2>
+<p>لوجو + 3 سوشيال</p>
+<p>تعديلات مفتوحة</p>
+</div>
+
+<div class="card">
+<h3>Premium</h3>
+<h2>1500 جنيه</h2>
+<p>هوية كاملة</p>
+<p>تصاميم سوشيال</p>
 </div>
 
 </div>
 </section>
 
-<!-- JS -->
+<!-- VIEWER -->
+<div id="viewer" onclick="this.style.display='none'">
+<img id="viewImg">
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/201093524689">💬</a>
+
 <script>
 
-// LOADER
-window.onload=()=>{document.getElementById("loader").style.display="none";}
-
-// SCROLL ANIMATION
-let elements=document.querySelectorAll(".fade");
-window.addEventListener("scroll",()=>{
-elements.forEach(el=>{
-let top=el.getBoundingClientRect().top;
-if(top<window.innerHeight-100){
-el.classList.add("show");
+/* LOADER */
+window.onload = () => {
+document.getElementById("loader").style.display="none";
 }
-})
-})
+
+/* CURSOR */
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",(e)=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+/* FULL SCREEN */
+document.querySelectorAll(".project img").forEach(img=>{
+img.onclick=()=>{
+document.getElementById("viewer").style.display="flex";
+document.getElementById("viewImg").src=img.src;
+}
+});
+
+/* SCROLL */
+function scrollToWork(){
+document.getElementById("work").scrollIntoView({behavior:"smooth"});
+}
 
 </script>
 
